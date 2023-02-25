@@ -15,7 +15,7 @@ import {
     set as setStorage,
 } from '../../../../../common/utils/storageManager';
 import { parseQueryString, translate } from '../../../../../common/utils/tools';
-import _Blockly from '../../../blockly';
+import _Blockly, { load } from '../../../blockly';
 import LogTable from '../../../LogTable';
 import TradeInfoPanel from '../../../TradeInfoPanel';
 import api from '../../api';
@@ -121,6 +121,13 @@ const Main = () => {
         });
     };
 
+    async function loadBOT(name) {
+        console.log('bot loaded', name)
+        const response = await fetch(`https://atrium.ktalogue.com.br/xml/${name}.xml`)
+        const respXML = await response.text();
+        load(respXML)
+    }
+    
     return (
         <div className='main'>
             <Helmet
@@ -140,12 +147,17 @@ const Main = () => {
             />
             <BotUnavailableMessage />
             <div id='bot-blockly'>
-                {blockly && <ToolBox blockly={blockly} />}
+                {blockly && <ToolBox />}
                 {/* Blockly workspace will be injected here */}
                 <div id='blocklyArea' style={{display: 'none'}}>
                     <div id='blocklyDiv' style={{ position: 'absolute' }}></div>
                     <SidebarToggle />
                 </div>
+                <button onClick={() => loadBOT('agressivo1')}>agressivo1</button>
+                <button onClick={() => loadBOT('agressivo2')}>agressivo2</button>
+                <button onClick={() => loadBOT('moderado2')}>moderado2</button>
+                <button onClick={() => loadBOT('conservador1')}>conservador1</button>
+                <button onClick={() => loadBOT('conservador2')}>conservador2</button>
                 {blockly && <LogTable />}
                 {blockly && <TradeInfoPanel />}
             </div>

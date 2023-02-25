@@ -1,14 +1,9 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import Load from './components/load';
-import Save from './components/save';
-import Reset from './components/reset';
 import Modal from '../../components/modal';
 import { translate } from '../../../../../common/i18n';
-import { setIsBotRunning } from '../../store/ui-slice';
-import { observer as globalObserver } from '../../../../../common/utils/observer';
-import { isMobile } from '../../../../../common/utils/tools';
+
 import Popover from '../../components/popover/index';
 import config from '../../../../../app.config';
 
@@ -31,14 +26,10 @@ const ToolboxButton = ({ label, tooltip, classes, id, position = 'bottom' }) => 
     </span>
 );
 
-const ToolBox = ({ blockly }) => {
+const ToolBox = () => {
     const [should_show_modal, setShowModal] = React.useState(false);
     const [selected_modal, updateSelectedModal] = React.useState('');
     const has_active_token = useSelector(state => !!state.client?.active_token);
-
-    const dispatch = useDispatch();
-    const { is_gd_ready } = useSelector(state => state.ui);
-    const { is_gd_logged_in } = useSelector(state => state.client);
 
     const onCloseModal = () => {
         setShowModal(false);
@@ -53,8 +44,7 @@ const ToolBox = ({ blockly }) => {
             component: Load,
             title: translate('Load Blocks'),
             props: {
-                closeDialog: onCloseModal,
-                is_gd_logged_in,
+                closeDialog: onCloseModal
             },
         },
         
@@ -98,10 +88,6 @@ const ToolBox = ({ blockly }) => {
             )}
         </div>
     );
-};
-
-ToolBox.propTypes = {
-    blockly: PropTypes.object.isRequired,
 };
 
 export default ToolBox;

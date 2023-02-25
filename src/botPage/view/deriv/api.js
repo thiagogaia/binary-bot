@@ -58,7 +58,7 @@ const getDomainAppId = () => {
         ? AppIdMap.staging[hostname]
         : hostname in AppIdMap.dev
         ? AppIdMap.dev[hostname]
-        : 29864;
+        : 35590;
 };
 
 export const getCustomEndpoint = () => ({

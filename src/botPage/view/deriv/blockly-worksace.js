@@ -79,6 +79,7 @@ export function applyToolboxPermissions() {
 
 const setFileBrowser = () => {
     const readFile = (f, dropEvent = {}) => {
+        console.log('readFile',  'vai pelo evento entao');
         const reader = new FileReader();
         reader.onload = e => load(e.target.result, dropEvent);
         reader.readAsText(f);

@@ -1,25 +1,13 @@
 import PropTypes from 'prop-types';
 import React from 'react';
-import LoadingButton from '../loading_button';
 import SAVE_LOAD_TYPE from '../../common/';
 import * as style from '../../../../../style';
 import { translate } from '../../../../../../../common/i18n';
-import google_drive_util from '../../../../../../../common/integrations/GoogleDrive';
-import useIsMounted from '../../../../../../../common/hooks/isMounted';
 
-const Load = ({ closeDialog, is_gd_logged_in }) => {
+const Load = ({ closeDialog }) => {
     const [load_type, setLoadType] = React.useState(SAVE_LOAD_TYPE.local);
-    const [is_loading, setLoading] = React.useState(false);
-    const isMounted = useIsMounted();
-
+    
     const onChange = e => setLoadType(e.target.value);
-
-  const createFilePicker = () => {
-    google_drive_util
-    .createFilePicker()
-    .then(() => closeDialog())
-    .finally(() => isMounted() && setLoading(false));
-  }
 
   const onSubmit = e => {
     e.preventDefault();
@@ -33,6 +21,7 @@ const Load = ({ closeDialog, is_gd_logged_in }) => {
     return (
         <form id='load-dialog' className='dialog-content' style={style.content} onSubmit={onSubmit}>
             <div className='center-text input-row'>
+                <input type="hidden" name={load_type} />
                 <span className='integration-option'>
                     <input
                         type='radio'
@@ -47,8 +36,8 @@ const Load = ({ closeDialog, is_gd_logged_in }) => {
                 
             </div>
             <div className='center-text input-row last'>
-                <button id='load-strategy' type='submit' disabled={is_loading}>
-                    {is_loading ? <LoadingButton /> : translate('Load')}
+                <button id='load-strategy' type='submit' >
+                    {translate('Load')}
                 </button>
             </div>
         </form>
@@ -57,7 +46,6 @@ const Load = ({ closeDialog, is_gd_logged_in }) => {
 
 Load.propTypes = {
     closeDialog: PropTypes.func.isRequired,
-    is_gd_logged_in: PropTypes.bool.isRequired,
 };
 
 export default React.memo(Load);
