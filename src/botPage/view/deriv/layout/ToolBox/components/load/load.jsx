@@ -23,30 +23,11 @@ const Load = ({ closeDialog, is_gd_logged_in }) => {
 
   const onSubmit = e => {
     e.preventDefault();
+    // [TODO]: Refactor to use react
+    document.getElementById('files').click();
+    closeDialog();
+    console.log('submit load.jsx');
 
-        if (load_type === SAVE_LOAD_TYPE.google_drive) {
-            setLoading(true);
-
-      if(!google_drive_util.access_token) {
-          google_drive_util.client.callback = (response) => {
-              google_drive_util.access_token = response.access_token;
-              createFilePicker() ;
-              isMounted() && setLoading(false);
-              closeDialog();
-          }
-          google_drive_util.client.requestAccessToken({prompt: "", hint: google_drive_util.google_email});
-      }
-      else {
-        createFilePicker() ;
-        isMounted() && setLoading(false);
-        closeDialog();
-      }
-   
-    } else {
-      // [TODO]: Refactor to use react
-      document.getElementById('files').click();
-      closeDialog();
-    }
   };
 
     return (
@@ -63,18 +44,7 @@ const Load = ({ closeDialog, is_gd_logged_in }) => {
                     />
                     <label htmlFor='load-local'>{translate('My computer')}</label>
                 </span>
-                {is_gd_logged_in && (
-                    <span className='integration-option'>
-                        <input
-                            type='radio'
-                            id='load-google-drive'
-                            name='load-option'
-                            value={SAVE_LOAD_TYPE.google_drive}
-                            onChange={onChange}
-                        />
-                        <label htmlFor='load-google-drive'>Google Drive</label>
-                    </span>
-                )}
+                
             </div>
             <div className='center-text input-row last'>
                 <button id='load-strategy' type='submit' disabled={is_loading}>

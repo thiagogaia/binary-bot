@@ -127,7 +127,7 @@ const Main = () => {
                 htmlAttributes={{
                     lang: getLanguage(),
                 }}
-                title={translate('Bot trading |  Automated trading system – Deriv')}
+                title={translate('Atrium 2.0 |  Bot – Deriv')}
                 defer={false}
                 meta={[
                     {
@@ -142,7 +142,7 @@ const Main = () => {
             <div id='bot-blockly'>
                 {blockly && <ToolBox blockly={blockly} />}
                 {/* Blockly workspace will be injected here */}
-                <div id='blocklyArea'>
+                <div id='blocklyArea' style={{display: 'none'}}>
                     <div id='blocklyDiv' style={{ position: 'absolute' }}></div>
                     <SidebarToggle />
                 </div>

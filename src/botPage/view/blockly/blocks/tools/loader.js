@@ -40,6 +40,7 @@ Blockly.Blocks.loader = {
             deleteBlocksLoadedBy(this.id);
             loadRemote(this).then(
                 () => {
+                    console.log('to aqui gente')
                     Blockly.Events.recordUndo = recordUndo;
                     globalObserver.emit('ui.log.success', translate('Blocks are loaded successfully'));
                 },

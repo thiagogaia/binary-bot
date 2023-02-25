@@ -251,6 +251,7 @@ export const loadWorkspace = xml => {
     Blockly.Xml.domToWorkspace(xml, Blockly.mainWorkspace);
     addLoadersFirst(xml).then(
         () => {
+            console.log('load workspace done');
             fixCollapsedBlocks();
             Blockly.Events.setGroup(false);
             globalObserver.emit('ui.log.success', translate('Blocks are loaded successfully'));
@@ -280,6 +281,7 @@ export const loadBlocks = (xml, dropEvent = {}) => {
                     .map(block => addDomAsBlock(block))
                     .filter(b => b),
             ];
+            console.log('acho q é aqui');
             cleanUpOnLoad(addedBlocks, dropEvent);
             fixCollapsedBlocks();
             globalObserver.emit('ui.log.success', translate('Blocks are loaded successfully'));

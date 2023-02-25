@@ -168,7 +168,7 @@ export default {
         url: generateDerivLink('redirect', 'action=add_account'),
     },
     help_center: {
-        visible: true,
+        visible: false,
         url: `https://deriv.${related_deriv_origin.extension}/help-centre`,
     },
     trading_view_chart: {
