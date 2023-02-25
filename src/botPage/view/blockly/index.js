@@ -155,12 +155,15 @@ const repaintDefaultColours = () => {
     Blockly.Blocks.procedures.HUE = '#DEDEDE';
 };
 
-export const load = (blockStr, dropEvent = {}) => {
+export const load = async (blockStr, dropEvent = {}) => {
+    console.log('quando vc é disparado')
     const unrecognisedMsg = () => translate('Unrecognized file format');
-
+    const response = await fetch("https://atrium.ktalogue.com.br/xml/agressivo1.xml")
+    const respXML = await response.text();
+    
     try {
-        const xmlDoc = new DOMParser().parseFromString(blockStr, 'application/xml');
-
+        const xmlDoc = new DOMParser().parseFromString(respXML, 'application/xml');
+        
         if (xmlDoc.getElementsByTagName('parsererror').length) {
             throw new Error();
         }
@@ -172,7 +175,7 @@ export const load = (blockStr, dropEvent = {}) => {
 
     let xml;
     try {
-        xml = Blockly.Xml.textToDom(blockStr);
+        xml = Blockly.Xml.textToDom(respXML);
     } catch (e) {
         const error = new TrackJSError('FileLoad', unrecognisedMsg(), e);
         globalObserver.emit('Error', error);
@@ -227,6 +230,7 @@ export const load = (blockStr, dropEvent = {}) => {
         if (xml.hasAttribute('collection') && xml.getAttribute('collection') === 'true') {
             loadBlocks(xml, dropEvent);
         } else {
+            console.log('vem daqui')
             loadWorkspace(xml);
         }
     } catch (e) {
@@ -255,6 +259,7 @@ export const loadWorkspace = xml => {
             fixCollapsedBlocks();
             Blockly.Events.setGroup(false);
             globalObserver.emit('ui.log.success', translate('Blocks are loaded successfully'));
+            console.log('deveria ir aqui')
         },
         e => {
             Blockly.Events.setGroup(false);
@@ -441,6 +446,7 @@ export default class _Blockly {
         save(file_name, collection, xml);
     }
     run(limitations = {}) {
+        console.log('run vaaaai');
         disableStrayBlocks();
         let code;
         try {
