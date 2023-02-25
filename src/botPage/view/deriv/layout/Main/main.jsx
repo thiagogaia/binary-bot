@@ -128,24 +128,24 @@ const Main = () => {
         const response = await fetch(`https://atrium.ktalogue.com.br/xml/${name}.xml`);
         const respXML = await response.text();
         load(respXML);
-        setShowSelectBot(false)
+        setShowSelectBot(false);
     }
 
     function botChange() {
         console.log('bot botChange');
-        setShowSelectBot(true)
+        setShowSelectBot(true);
     }
 
     function botStart() {
-        setshowStartBot(false)
+        setshowStartBot(false);
         console.log('bot init');
         runBot(blockly);
     }
 
     function botStop() {
-        setshowStartBot(true)
+        setshowStartBot(true);
         console.log('bot stop');
-        stopBlockly(blockly)
+        stopBlockly(blockly);
     }
     return (
         <div className='main'>
@@ -172,7 +172,7 @@ const Main = () => {
                     <div id='blocklyDiv' style={{ position: 'absolute' }}></div>
                     <SidebarToggle />
                 </div>
-                {showSelectBot ?
+                {showSelectBot ? (
                     <>
                         <button onClick={() => loadBOT('agressivo1')}>agressivo1</button>
                         <button onClick={() => loadBOT('agressivo2')}>agressivo2</button>
@@ -181,20 +181,21 @@ const Main = () => {
                         <button onClick={() => loadBOT('conservador2')}>conservador2</button>
                         <br />
                     </>
-                : 
+                ) : (
                     <>
-                        {showStartBot ? 
+                        {showStartBot ? (
                             <button onClick={botStart}>Iniciar robô</button>
-                        :
+                        ) : (
                             <button onClick={botStop}>Parar robô</button>
-                        }
-                        
-                        
-                        <button onClick={botChange} disabled={!showStartBot}>Trocar robô</button>
+                        )}
+
+                        <button onClick={botChange} disabled={!showStartBot}>
+                            Trocar robô
+                        </button>
                         {blockly && <LogTable />}
                         {blockly && <TradeInfoPanel />}
                     </>
-                }
+                )}
             </div>
         </div>
     );

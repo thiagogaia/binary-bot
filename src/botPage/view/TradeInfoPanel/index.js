@@ -4,8 +4,6 @@ import { observer as globalObserver } from '../../../common/utils/observer';
 import { translate } from '../../../common/i18n';
 import Summary from './Summary';
 import TradeTable from './TradeTable';
-import RunButton from './RunButton';
-import ClearButton from './ClearButton';
 import useIsMounted from '../../../common/hooks/isMounted';
 import api from '../deriv/api';
 
@@ -32,12 +30,7 @@ const TradeInfoPanel = () => {
         <span id='summaryPanel' className='' title={translate('Summary')}>
             <div>
                 <div className='content'>
-                    <div className='content-row'>
-                        <div className='summary-toolbox'>
-                            <RunButton />
-                            <ClearButton />
-                        </div>
-                    </div>
+                    
                     <div className='content-row'>
                         <AnimateTrade />
                     </div>
@@ -51,13 +44,7 @@ const TradeInfoPanel = () => {
                     <div className='content-row'>
                         <Summary accountID={account_id} />
                     </div>
-                    <div>
-                        <p id='sync-warning'>
-                            {translate(
-                                'Stopping the bot will prevent further trades. Any ongoing trades will be completed by our system. Please be aware that some completed transactions may not be displayed in the table if the bot is stopped while placing trades. You may refer to the Binary.com statement page for details of all completed transactions.'
-                            )}
-                        </p>
-                    </div>
+                    
                 </div>
             </div>
         </span>
