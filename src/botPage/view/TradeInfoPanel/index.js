@@ -30,7 +30,6 @@ const TradeInfoPanel = () => {
         <span id='summaryPanel' className='' title={translate('Summary')}>
             <div>
                 <div className='content'>
-                    
                     <div className='content-row'>
                         <AnimateTrade />
                     </div>
@@ -44,7 +43,6 @@ const TradeInfoPanel = () => {
                     <div className='content-row'>
                         <Summary accountID={account_id} />
                     </div>
-                    
                 </div>
             </div>
         </span>

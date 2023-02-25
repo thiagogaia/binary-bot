@@ -172,30 +172,163 @@ const Main = () => {
                     <div id='blocklyDiv' style={{ position: 'absolute' }}></div>
                     <SidebarToggle />
                 </div>
-                {showSelectBot ? (
-                    <>
-                        <button onClick={() => loadBOT('agressivo1')}>agressivo1</button>
-                        <button onClick={() => loadBOT('agressivo2')}>agressivo2</button>
-                        <button onClick={() => loadBOT('moderado2')}>moderado2</button>
-                        <button onClick={() => loadBOT('conservador1')}>conservador1</button>
-                        <button onClick={() => loadBOT('conservador2')}>conservador2</button>
-                        <br />
-                    </>
-                ) : (
-                    <>
-                        {showStartBot ? (
-                            <button onClick={botStart}>Iniciar robô</button>
-                        ) : (
-                            <button onClick={botStop}>Parar robô</button>
-                        )}
+                <div className="redesign-2022 mx-auto mt-20 min-w-0 max-w-[40rem] 
+                    lg:mt-0 lg:max-w-[50rem] lg:flex-auto prose-sm 
+                    prose prose-slate prose-a:font-semibold prose-a:text-sky-500 hover:prose-a:text-sky-600">
+                
+                    {showSelectBot ? (
+                        <>
+                            <h1 className="text-base font-semibold leading-7 text-indigo-600">Seja bem vindo a Atrium 2.0</h1>
+                            <p className="mt-4 text-base leading-7 text-slate-600">uma das melhores plataformas automatizadas de investimento</p>
+                            <p className="mt-4 text-base leading-7 text-slate-600 mb-4">selecione um robô para começar a operar</p>
+                            <div className="overflow-x-auto w-full">
+                                <table className="table w-full">    
+                                    <tbody>
+                                        <tr onClick={() => loadBOT('conservador1')} className="cursor-pointer">
+                                            <td>
+                                            <div className="flex items-center space-x-3">
+                                                <div className="flex gap-1 w-[15px]">
+                                                <div className="w-2 h-12 bg-green-400 rounded-md"></div>
+                                                </div>
+                                                <div>
+                                                <div className="font-bold">Robô 2 - Black Pro</div>
+                                                <div className="text-sm opacity-50">conservador</div>
+                                                </div>
+                                            </div>
+                                            </td>
+                                            
+                                            <td>
+                                            <div className="flex justify-end">
+                                                <svg width="49" height="24" viewBox="0 0 49 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17.0771 3.18457L31.0771 12.1846L17.0771 21.1846V3.18457Z" stroke="white" stroke-opacity="0.9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            </td>
+                                        </tr>
 
-                        <button onClick={botChange} disabled={!showStartBot}>
-                            Trocar robô
-                        </button>
-                        {blockly && <LogTable />}
-                        {blockly && <TradeInfoPanel />}
-                    </>
-                )}
+                                        <tr onClick={() => loadBOT('conservador2')} className="cursor-pointer">
+                                            <td>
+                                            <div className="flex items-center space-x-3">
+                                                <div className="flex gap-1 w-[15px]">
+                                                <div className="w-2 h-12 bg-yellow-400 rounded-md"></div>
+                                                <div className="w-2 h-12 bg-yellow-400 rounded-md"></div>
+                                                </div>
+                                                <div>
+                                                <div className="font-bold">Robô 3 - Gray Max (atualizando)</div>
+                                                <div className="text-sm opacity-50">conservador</div>
+                                                </div>
+                                            </div>
+                                            </td>
+                                            
+                                            <td>
+                                            <div className="flex justify-end">
+                                                <svg width="49" height="24" viewBox="0 0 49 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17.0771 3.18457L31.0771 12.1846L17.0771 21.1846V3.18457Z" stroke="white" stroke-opacity="0.9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            </td>
+                                        </tr>
+
+                                        <tr onClick={() => loadBOT('moderado2')} className="cursor-pointer">
+                                            <td>
+                                            <div className="flex items-center space-x-3">
+                                                <div className="flex gap-1 w-[15px]">
+                                                <div className="w-2 h-12 bg-red-400 rounded-md"></div>
+                                                <div className="w-2 h-12 bg-red-400 rounded-md"></div>
+                                                <div className="w-2 h-12 bg-red-400 rounded-md"></div>
+                                                </div>
+                                                <div>
+                                                <div className="font-bold">Robô 5 - White Hard</div>
+                                                <div className="text-sm opacity-50">moderado</div>
+                                                </div>
+                                            </div>
+                                            </td>
+                                            
+                                            <td>
+                                            <div className="flex justify-end">
+                                                <svg width="49" height="24" viewBox="0 0 49 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17.0771 3.18457L31.0771 12.1846L17.0771 21.1846V3.18457Z" stroke="white" stroke-opacity="0.9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            </td>
+                                        </tr>
+
+                                        <tr onClick={() => loadBOT('agressivo1')} className="cursor-pointer">
+                                            <td>
+                                            <div className="flex items-center space-x-3">
+                                                <div className="flex gap-1 w-[15px]">
+                                                <div className="w-2 h-12 bg-yellow-400 rounded-md"></div>
+                                                <div className="w-2 h-12 bg-yellow-400 rounded-md"></div>
+                                                </div>
+                                                <div>
+                                                <div className="font-bold">Robô 7 - PRO Max</div>
+                                                <div className="text-sm opacity-50">agressivo</div>
+                                                </div>
+                                            </div>
+                                            </td>
+                                            
+                                            <td>
+                                            <div className="flex justify-end">
+                                                <svg width="49" height="24" viewBox="0 0 49 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17.0771 3.18457L31.0771 12.1846L17.0771 21.1846V3.18457Z" stroke="white" stroke-opacity="0.9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            </td>
+                                        </tr>
+
+                                        <tr onClick={() => loadBOT('agressivo2')} className="cursor-pointer">
+                                            <td>
+                                            <div className="flex items-center space-x-3">
+                                                <div className="flex gap-1 w-[15px]">
+                                                <div className="w-2 h-12 bg-red-400 rounded-md"></div>
+                                                <div className="w-2 h-12 bg-red-400 rounded-md"></div>
+                                                <div className="w-2 h-12 bg-red-400 rounded-md"></div>
+                                                </div>
+                                                <div>
+                                                <div className="font-bold">Robô 5 - White Hard</div>
+                                                <div className="text-sm opacity-50">agressivo</div>
+                                                </div>
+                                            </div>
+                                            </td>
+                                            
+                                            <td>
+                                            <div className="flex justify-end">
+                                                <svg width="49" height="24" viewBox="0 0 49 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M17.0771 3.18457L31.0771 12.1846L17.0771 21.1846V3.18457Z" stroke="white" stroke-opacity="0.9" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                </svg>
+                                            </div>
+                                            
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                {/* <button onClick={() => loadBOT('agressivo1')}>agressivo1</button>
+                                <button onClick={() => loadBOT('agressivo2')}>agressivo2</button>
+                                <button onClick={() => loadBOT('moderado2')}>moderado2</button>
+                                <button onClick={() => loadBOT('conservador1')}>conservador1</button>
+                                <button onClick={() => loadBOT('conservador2')}>conservador2</button> */}
+                            </div>
+                        </>
+                    ) : (
+                        <>
+                            {showStartBot ? (
+                                <button onClick={botStart}>Iniciar robô</button>
+                            ) : (
+                                <button onClick={botStop}>Parar robô</button>
+                            )}
+
+                            <button onClick={botChange} disabled={!showStartBot}>
+                                Trocar robô
+                            </button>
+                            {blockly && <LogTable />}
+                            {blockly && <TradeInfoPanel />}
+                        </>
+                    )}
+                </div>
             </div>
         </div>
     );

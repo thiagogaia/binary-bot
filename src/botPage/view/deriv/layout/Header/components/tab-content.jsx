@@ -18,6 +18,7 @@ const TabContent = ({ tab, isActive, setIsAccDropdownOpen }) => {
     const token_list = getTokenList();
     const { visible, url, label } = config.add_account;
     const onChangeAccount = acc => {
+        console.log('onChangeAccount')
         const account_token = token_list.find(token => token.accountName === acc);
         if (account_token?.token && acc !== active_account_name) {
             if (show_bot_unavailable_page) {
@@ -96,12 +97,7 @@ const TabContent = ({ tab, isActive, setIsAccDropdownOpen }) => {
                                     )
                                 );
                             })}
-                    {isReal && visible && (
-                        <a href={url} rel='noopener noreferrer' className='account__switcher-add'>
-                            <img className='account__switcher-add-icon' src='image/deriv/ic-add-circle.svg' />
-                            <span className='account__switcher-add-text'>{label}</span>
-                        </a>
-                    )}
+                    
                 </div>
             </div>
         </div>

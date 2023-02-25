@@ -93,18 +93,7 @@ const AccountDropdown = React.forwardRef((props, dropdownRef) => {
                             <span className='symbols'>&nbsp;{activeTab === 'demo' ? 'USD' : currency}</span>
                         </span>
                     </div>
-                    <Separator />
-                    <div
-                        id='deriv__logout-btn'
-                        className='account__switcher-logout logout'
-                        onClick={() => {
-                            if (show_bot_unavailable_page) onLogout();
-                            else updaetShowLogoutModal(true);
-                        }}
-                    >
-                        <span className='account__switcher-logout-text'>{translate('Log out')}</span>
-                        <img className='account__switcher-logout-icon logout-icon' src='image/deriv/ic-logout.svg' />
-                    </div>
+                    
                 </div>
             </div>
             {show_logout_modal && (
