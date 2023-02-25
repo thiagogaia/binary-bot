@@ -16,8 +16,9 @@ const Save = ({ blockly, closeDialog }) => {
     const [save_as_collection, setSaveAsCollection] = React.useState(false);
     const isMounted = useIsMounted();
 
-    const onChange = e => e.target.type === 'radio' ? setSaveType(e.target.value) : setSaveAsCollection(e.target.checked);
-   
+    const onChange = e =>
+        e.target.type === 'radio' ? setSaveType(e.target.value) : setSaveAsCollection(e.target.checked);
+
     const saveInGoogleDrive = () => {
         const xml = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
         cleanBeforeExport(xml);
@@ -33,7 +34,7 @@ const Save = ({ blockly, closeDialog }) => {
             })
             .then(() => globalObserver.emit('ui.log.success', translate('Successfully uploaded to Google Drive')))
             .finally(() => isMounted() && setLoading(false));
-    }
+    };
     const onSubmit = e => {
         e.preventDefault();
 
@@ -43,17 +44,15 @@ const Save = ({ blockly, closeDialog }) => {
             return;
         }
         setLoading(true);
-        if(!google_drive_util.access_token) {
-            google_drive_util.client.callback = (response) => {
+        if (!google_drive_util.access_token) {
+            google_drive_util.client.callback = response => {
                 google_drive_util.access_token = response.access_token;
-                saveInGoogleDrive() ;
-            }
-            google_drive_util.client.requestAccessToken({prompt: "", hint: google_drive_util.google_email});
+                saveInGoogleDrive();
+            };
+            google_drive_util.client.requestAccessToken({ prompt: '', hint: google_drive_util.google_email });
+        } else {
+            saveInGoogleDrive();
         }
-        else {
-            saveInGoogleDrive() ;
-        }
-        
     };
 
     return (
@@ -82,7 +81,6 @@ const Save = ({ blockly, closeDialog }) => {
                     />
                     <label htmlFor='save-local'>{translate('My computer')}</label>
                 </span>
-                
             </div>
             <div id='collection' className='input-row'>
                 <input
@@ -118,7 +116,7 @@ const Save = ({ blockly, closeDialog }) => {
 
 Save.propTypes = {
     blockly: PropTypes.object.isRequired,
-    closeDialog: PropTypes.func.isRequired
+    closeDialog: PropTypes.func.isRequired,
 };
 
 export default React.memo(Save);

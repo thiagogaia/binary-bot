@@ -29,7 +29,7 @@ const TradeInfoPanel = () => {
     }, []);
 
     return (
-        <span id='summaryPanel' className='draggable-dialog' title={translate('Summary')}>
+        <span id='summaryPanel' className='' title={translate('Summary')}>
             <div>
                 <div className='content'>
                     <div className='content-row'>

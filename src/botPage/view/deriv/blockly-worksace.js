@@ -77,9 +77,50 @@ export function applyToolboxPermissions() {
         [fn]();
 }
 
+function startBot(limitations, blockly) {
+    const elRunButtons = document.querySelectorAll('#runButton, #summaryRunButton');
+    const elStopButtons = document.querySelectorAll('#stopButton, #summaryStopButton');
+
+    elRunButtons.forEach(el => {
+        const elRunButton = el;
+        elRunButton.style.display = 'none';
+        elRunButton.setAttributeNode(document.createAttribute('disabled'));
+    });
+    elStopButtons.forEach(el => {
+        const elStopButton = el;
+        elStopButton.style.display = 'inline-block';
+    });
+
+    // showSummary();
+    console.log('startbot: block limitations', limitations);
+    blockly.run(limitations);
+}
+
+export function runBot(blockly) {
+    console.log('esse aqui é o click será?');
+    // setTimeout is needed to ensure correct event sequence
+    if (!checkForRequiredBlocks()) {
+        setTimeout(() => $('#stopButton').triggerHandler('click'));
+        return;
+    }
+
+    const token = document.getElementById('active-token')?.value;
+    const tokenObj = token ? getToken(token) : false;
+
+    if (tokenObj && tokenObj.hasTradeLimitation) {
+        const limits = new Limits(api);
+        limits
+            .getLimits()
+            .then(startBot)
+            .catch(() => {});
+    } else {
+        startBot(undefined, blockly);
+    }
+}
+
 const setFileBrowser = () => {
     const readFile = (f, dropEvent = {}) => {
-        console.log('readFile',  'vai pelo evento entao');
+        console.log('readFile', 'vai pelo evento entao');
         const reader = new FileReader();
         reader.onload = e => load(e.target.result, dropEvent);
         reader.readAsText(f);
@@ -238,6 +279,7 @@ const addBindings = blockly => {
     };
 
     $('#logButton').click(() => {
+        console.log('logButton abre aqui');
         $('#logPanel').dialog('open');
         addExportButtonToPanel('logPanel');
     });
@@ -253,45 +295,8 @@ const addBindings = blockly => {
         removeTokens();
     });
 
-    const startBot = limitations => {
-        const elRunButtons = document.querySelectorAll('#runButton, #summaryRunButton');
-        const elStopButtons = document.querySelectorAll('#stopButton, #summaryStopButton');
-
-        elRunButtons.forEach(el => {
-            const elRunButton = el;
-            elRunButton.style.display = 'none';
-            elRunButton.setAttributeNode(document.createAttribute('disabled'));
-        });
-        elStopButtons.forEach(el => {
-            const elStopButton = el;
-            elStopButton.style.display = 'inline-block';
-        });
-
-        showSummary();
-        console.log('startbot: block limitations', limitations);
-        blockly.run(limitations);
-    };
-
     $('#runButton').click(() => {
-        console.log('esse aqui é o click será?')
-        // setTimeout is needed to ensure correct event sequence
-        if (!checkForRequiredBlocks()) {
-            setTimeout(() => $('#stopButton').triggerHandler('click'));
-            return;
-        }
-
-        const token = document.getElementById('active-token')?.value;
-        const tokenObj = token ? getToken(token) : false;
-
-        if (tokenObj && tokenObj.hasTradeLimitation) {
-            const limits = new Limits(api);
-            limits
-                .getLimits()
-                .then(startBot)
-                .catch(() => {});
-        } else {
-            startBot();
-        }
+        runBot();
     });
 
     $('#stopButton')

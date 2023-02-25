@@ -6,22 +6,21 @@ import { translate } from '../../../../../../../common/i18n';
 
 const Load = ({ closeDialog }) => {
     const [load_type, setLoadType] = React.useState(SAVE_LOAD_TYPE.local);
-    
+
     const onChange = e => setLoadType(e.target.value);
 
-  const onSubmit = e => {
-    e.preventDefault();
-    // [TODO]: Refactor to use react
-    document.getElementById('files').click();
-    closeDialog();
-    console.log('submit load.jsx');
-
-  };
+    const onSubmit = e => {
+        e.preventDefault();
+        // [TODO]: Refactor to use react
+        document.getElementById('files').click();
+        closeDialog();
+        console.log('submit load.jsx');
+    };
 
     return (
         <form id='load-dialog' className='dialog-content' style={style.content} onSubmit={onSubmit}>
             <div className='center-text input-row'>
-                <input type="hidden" name={load_type} />
+                <input type='hidden' name={load_type} />
                 <span className='integration-option'>
                     <input
                         type='radio'
@@ -33,10 +32,9 @@ const Load = ({ closeDialog }) => {
                     />
                     <label htmlFor='load-local'>{translate('My computer')}</label>
                 </span>
-                
             </div>
             <div className='center-text input-row last'>
-                <button id='load-strategy' type='submit' >
+                <button id='load-strategy' type='submit'>
                     {translate('Load')}
                 </button>
             </div>

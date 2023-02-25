@@ -19,13 +19,13 @@ import _Blockly, { load } from '../../../blockly';
 import LogTable from '../../../LogTable';
 import TradeInfoPanel from '../../../TradeInfoPanel';
 import api from '../../api';
-import initialize, { applyToolboxPermissions } from '../../blockly-worksace';
+import initialize, { applyToolboxPermissions, runBot } from '../../blockly-worksace';
 import SidebarToggle from '../../components/SidebarToggle';
 import { updateActiveAccount, updateActiveToken, updateIsLogged } from '../../store/client-slice';
 import { setShouldReloadWorkspace, updateShowTour } from '../../store/ui-slice';
 import { getRelatedDeriveOrigin, isLoggedIn } from '../../utils';
 import BotUnavailableMessage from '../Error/bot-unavailable-message-page.jsx';
-import ToolBox from '../ToolBox';
+// import ToolBox from '../ToolBox';
 
 const Main = () => {
     const [blockly, setBlockly] = React.useState(null);
@@ -122,12 +122,16 @@ const Main = () => {
     };
 
     async function loadBOT(name) {
-        console.log('bot loaded', name)
-        const response = await fetch(`https://atrium.ktalogue.com.br/xml/${name}.xml`)
+        console.log('bot loaded', name);
+        const response = await fetch(`https://atrium.ktalogue.com.br/xml/${name}.xml`);
         const respXML = await response.text();
-        load(respXML)
+        load(respXML);
     }
-    
+
+    function botToggle() {
+        console.log('bot init');
+        runBot(blockly);
+    }
     return (
         <div className='main'>
             <Helmet
@@ -147,9 +151,9 @@ const Main = () => {
             />
             <BotUnavailableMessage />
             <div id='bot-blockly'>
-                {blockly && <ToolBox />}
+                {/* {blockly && <ToolBox />} */}
                 {/* Blockly workspace will be injected here */}
-                <div id='blocklyArea' style={{display: 'none'}}>
+                <div id='blocklyArea' style={{ display: 'none' }}>
                     <div id='blocklyDiv' style={{ position: 'absolute' }}></div>
                     <SidebarToggle />
                 </div>
@@ -158,6 +162,9 @@ const Main = () => {
                 <button onClick={() => loadBOT('moderado2')}>moderado2</button>
                 <button onClick={() => loadBOT('conservador1')}>conservador1</button>
                 <button onClick={() => loadBOT('conservador2')}>conservador2</button>
+                <br />
+                <button onClick={botToggle}>Iniciar robô</button>
+                <button>Trocar robô</button>
                 {blockly && <LogTable />}
                 {blockly && <TradeInfoPanel />}
             </div>

@@ -44,10 +44,9 @@ const ToolBox = () => {
             component: Load,
             title: translate('Load Blocks'),
             props: {
-                closeDialog: onCloseModal
+                closeDialog: onCloseModal,
             },
         },
-        
     };
     return (
         <div id='toolbox'>
@@ -60,9 +59,7 @@ const ToolBox = () => {
                     }}
                 />
             </Popover>
-            
 
-            
             {/* Needs Refactor ClientInfo Structure */}
             <span className='toolbox-separator' />
             <Popover content={translate('Show/hide the summary pop-up')} position='bottom'>

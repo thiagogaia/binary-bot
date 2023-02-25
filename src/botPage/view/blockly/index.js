@@ -42,8 +42,6 @@ const disableStrayBlocks = () => {
     });
 };
 
-
-
 const marketsWereRemoved = xml => {
     if (!Array.from(xml.children).every(block => !removeUnavailableMarkets(block))) {
         trackJSTrack(new TrackJSError(translate('Invalid financial market')));
@@ -73,12 +71,12 @@ const xmlToStr = xml => {
 };
 
 export const load = (blockStr, dropEvent = {}) => {
-    console.log('quando vc é disparado')
+    console.log('quando vc é disparado');
     const unrecognisedMsg = () => translate('Unrecognized file format');
-    
+
     try {
         const xmlDoc = new DOMParser().parseFromString(blockStr, 'application/xml');
-        
+
         if (xmlDoc.getElementsByTagName('parsererror').length) {
             throw new Error();
         }
@@ -145,7 +143,7 @@ export const load = (blockStr, dropEvent = {}) => {
         if (xml.hasAttribute('collection') && xml.getAttribute('collection') === 'true') {
             loadBlocks(xml, dropEvent);
         } else {
-            console.log('vem daqui')
+            console.log('vem daqui');
             loadWorkspace(xml);
         }
     } catch (e) {
@@ -174,7 +172,7 @@ export const loadWorkspace = xml => {
             fixCollapsedBlocks();
             Blockly.Events.setGroup(false);
             globalObserver.emit('ui.log.success', translate('Blocks are loaded successfully'));
-            console.log('deveria ir aqui')
+            console.log('deveria ir aqui');
         },
         e => {
             Blockly.Events.setGroup(false);
@@ -214,7 +212,7 @@ export const loadBlocks = (xml, dropEvent = {}) => {
 
 export default class _Blockly {
     constructor() {
-        console.log('quando vc é disparado')
+        console.log('quando vc é disparado');
         this.generatedJs = '';
         // eslint-disable-next-line no-underscore-dangle
         Blockly.WorkspaceSvg.prototype.preloadAudio_ = () => {}; // https://github.com/google/blockly/issues/299
@@ -228,7 +226,7 @@ export default class _Blockly {
                     },
                     trashcan: false,
                 });
-                
+
                 createDataStore(workspace);
             });
         });

@@ -1,5 +1,5 @@
 import React from 'react';
-import NetworkStatus from './components/network-status.jsx';
+/* import NetworkStatus from './components/network-status.jsx';
 import ServerTime from './components/server-time.jsx';
 import ToggleFullScreen from './components/toggle-fullscreen.jsx';
 import LanguageSelector from './components/language-selector.jsx';
@@ -11,12 +11,11 @@ const HelpCenter = () => (
     <a id='help-center' className='footer__link' href={config.help_center.url} target='_blank'>
         <img src='image/deriv/ic-help-centre.svg' />
     </a>
-);
+); */
 
-const Footer = () => {
-    return (
+const Footer = () => (
         <footer className='footer'>
-            <NetworkStatus />
+            {/* <NetworkStatus />
             <FooterIconSeparator />
             <LanguageSelector />
             <FooterIconSeparator />
@@ -30,9 +29,8 @@ const Footer = () => {
                     </>
                 )}
                 <ToggleFullScreen />
-            </div>
+            </div> */}
         </footer>
     );
-};
 
 export default Footer;
