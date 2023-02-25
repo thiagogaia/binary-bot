@@ -19,7 +19,7 @@ import _Blockly, { load } from '../../../blockly';
 import LogTable from '../../../LogTable';
 import TradeInfoPanel from '../../../TradeInfoPanel';
 import api from '../../api';
-import initialize, { applyToolboxPermissions, runBot } from '../../blockly-worksace';
+import initialize, { applyToolboxPermissions, runBot, stopBlockly } from '../../blockly-worksace';
 import SidebarToggle from '../../components/SidebarToggle';
 import { updateActiveAccount, updateActiveToken, updateIsLogged } from '../../store/client-slice';
 import { setShouldReloadWorkspace, updateShowTour } from '../../store/ui-slice';
@@ -54,6 +54,8 @@ const Main = () => {
         }
     }, [should_reload_workspace]);
 
+    const [showSelectBot, setShowSelectBot] = React.useState(true);
+    const [showStartBot, setshowStartBot] = React.useState(true);
     const init = () => {
         const local_storage_sync = document.getElementById('localstorage-sync');
         if (local_storage_sync) {
@@ -126,11 +128,24 @@ const Main = () => {
         const response = await fetch(`https://atrium.ktalogue.com.br/xml/${name}.xml`);
         const respXML = await response.text();
         load(respXML);
+        setShowSelectBot(false)
     }
 
-    function botToggle() {
+    function botChange() {
+        console.log('bot botChange');
+        setShowSelectBot(true)
+    }
+
+    function botStart() {
+        setshowStartBot(false)
         console.log('bot init');
         runBot(blockly);
+    }
+
+    function botStop() {
+        setshowStartBot(true)
+        console.log('bot stop');
+        stopBlockly(blockly)
     }
     return (
         <div className='main'>
@@ -157,16 +172,29 @@ const Main = () => {
                     <div id='blocklyDiv' style={{ position: 'absolute' }}></div>
                     <SidebarToggle />
                 </div>
-                <button onClick={() => loadBOT('agressivo1')}>agressivo1</button>
-                <button onClick={() => loadBOT('agressivo2')}>agressivo2</button>
-                <button onClick={() => loadBOT('moderado2')}>moderado2</button>
-                <button onClick={() => loadBOT('conservador1')}>conservador1</button>
-                <button onClick={() => loadBOT('conservador2')}>conservador2</button>
-                <br />
-                <button onClick={botToggle}>Iniciar robô</button>
-                <button>Trocar robô</button>
-                {blockly && <LogTable />}
-                {blockly && <TradeInfoPanel />}
+                {showSelectBot ?
+                    <>
+                        <button onClick={() => loadBOT('agressivo1')}>agressivo1</button>
+                        <button onClick={() => loadBOT('agressivo2')}>agressivo2</button>
+                        <button onClick={() => loadBOT('moderado2')}>moderado2</button>
+                        <button onClick={() => loadBOT('conservador1')}>conservador1</button>
+                        <button onClick={() => loadBOT('conservador2')}>conservador2</button>
+                        <br />
+                    </>
+                : 
+                    <>
+                        {showStartBot ? 
+                            <button onClick={botStart}>Iniciar robô</button>
+                        :
+                            <button onClick={botStop}>Parar robô</button>
+                        }
+                        
+                        
+                        <button onClick={botChange} disabled={!showStartBot}>Trocar robô</button>
+                        {blockly && <LogTable />}
+                        {blockly && <TradeInfoPanel />}
+                    </>
+                }
             </div>
         </div>
     );

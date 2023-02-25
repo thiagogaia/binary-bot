@@ -296,7 +296,7 @@ const addBindings = blockly => {
     });
 
     $('#runButton').click(() => {
-        runBot();
+        runBot(blockly);
     });
 
     $('#stopButton')
@@ -324,7 +324,7 @@ const addBindings = blockly => {
         });
     });
 };
-const stopBlockly = blockly => blockly.stop();
+export const stopBlockly = blockly => blockly.stop();
 
 const addEventHandlers = blockly => {
     const getRunButtonElements = () => document.querySelectorAll('#runButton, #summaryRunButton');
