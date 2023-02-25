@@ -88,20 +88,11 @@ const AccountActions = () => {
 
     return (
         <React.Fragment>
-            <Notifications />
+            {/* <Notifications /> */}
             {/* [Todo] Needs to remove input after add client info to blockly */}
             <input type='hidden' id='active-token' value={active_token} />
             <input type='hidden' id='active-account-name' value={active_account_name} />
-            <a
-                className='url-account-details header__account header__menu-item mobile-hide'
-                href={generateDerivLink('account')}
-            >
-                <img
-                    className='header__icon-button'
-                    id='header__account-settings'
-                    src='image/deriv/ic-user-outline.svg'
-                />
-            </a>
+            
             <div className='header__divider mobile-hide'></div>
             <div
                 id='acc_switcher'
@@ -127,8 +118,8 @@ const AccountActions = () => {
             )}
 
             {visible && (
-                <a className='url-cashier-deposit btn btn--primary header__deposit mobile-hide' href={url}>
-                    {label}
+                <a className='url-cashier-deposit btn btn--primary header__deposit mobile-hide' href="#">
+                    Olá ThiGato
                 </a>
             )}
             {account_switcher_token && (
@@ -136,8 +127,8 @@ const AccountActions = () => {
                     <AccountSwitchModal is_bot_running={is_bot_running} onClose={onClose} onAccept={onAccept} />
                 </Modal>
             )}
-            <TourTargets />
-            <Tour />
+            {/* <TourTargets /> */}
+            {/* <Tour /> */}
         </React.Fragment>
     );
 };

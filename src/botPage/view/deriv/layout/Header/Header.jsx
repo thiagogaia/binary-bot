@@ -140,29 +140,17 @@ const Header = () => {
             <div id='deriv__header' className='header__menu-items'>
                 {isDesktop() && (
                     <div className='header__menu-left'>
-                        {isPlatformSwitcherOpen && (
-                            <PlatformDropdown
-                                hideDropdown={hideDropdown}
-                                ref={platformDropdownRef}
-                                setIsPlatformSwitcherOpen={setIsPlatformSwitcherOpen}
-                            />
-                        )}
+                        
                         <div
                             id='platform__switcher'
                             className='header__menu-item platform__switcher'
-                            onClick={() => setIsPlatformSwitcherOpen(!isPlatformSwitcherOpen)}
+                            
                         >
                             <img className='header__logo' src={config.app_logo} />
                             <div className='platform__switcher-header'>{config.app_title}</div>
-                            <img
-                                id='platform__switcher-expand'
-                                className={classNames('header__icon header__expand', {
-                                    open: isPlatformSwitcherOpen,
-                                })}
-                                src='image/deriv/ic-chevron-down-bold.svg'
-                            />
+                            
                         </div>
-                        {is_logged && <MenuLinks />}
+                        
                     </div>
                 )}
                 {isMobile() && (

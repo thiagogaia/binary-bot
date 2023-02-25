@@ -27,7 +27,7 @@ export const parseQueryString = () => {
 
 export const getLanguage = () => {
     const queryLang = parseQueryString().l || getStorage('lang');
-    const lang = queryLang in supportedLanguages ? queryLang : 'en';
+    const lang = queryLang in supportedLanguages ? queryLang : 'pt';
     setStorage('lang', lang);
     setCookieLanguage(lang);
     return lang;

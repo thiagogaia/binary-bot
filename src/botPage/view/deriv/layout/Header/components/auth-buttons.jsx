@@ -25,14 +25,13 @@ const AuthButtons = () => {
             <a
                 id='btn__signup'
                 className='btn btn--primary header__btn-signup'
-                target='_blank'
                 rel='noopener noreferrer'
-                href={config.signup.url}
+                href="#"
             >
-                {config.signup.label}
+                Olá ThiGato
             </a>
-            <TourTargets />
-            <Tour />
+            {/* <TourTargets /> */}
+            {/* <Tour /> */}
         </div>
     );
 };

@@ -35,30 +35,11 @@ const DrawerMenu = ({
                             updateShowDrawerMenu(false);
                         }}
                     />
-                    {translate('Menu')}
+                    <img className='header__logo' src={config.app_logo} />
+                    <div className='platform__switcher-header'>{config.app_title}</div>
                 </div>
                 <div className='header__drawer-content'>
-                    <div
-                        id='platform__switcher'
-                        className='header__drawer__platform-switcher'
-                        onClick={() => setIsPlatformSwitcherOpen(!isPlatformSwitcherOpen)}
-                    >
-                        <img className='header__logo' src={config.app_logo} />
-                        <div className='platform__switcher-header'>{config.app_title}</div>
-                        <img
-                            id='platform__switcher-expand'
-                            className={classNames('header__icon header__expand', { open: isPlatformSwitcherOpen })}
-                            src='image/deriv/ic-chevron-down-bold.svg'
-                        />
-                    </div>
-                    {isPlatformSwitcherOpen && (
-                        <PlatformDropdown
-                            hideDropdown={hideDropdown}
-                            ref={platformDropdownRef}
-                            setIsPlatformSwitcherOpen={setIsPlatformSwitcherOpen}
-                        />
-                    )}
-                    {is_logged && <MenuLinks />}
+                    
                 </div>
             </div>
         </div>

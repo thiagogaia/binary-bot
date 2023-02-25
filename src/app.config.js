@@ -5,7 +5,7 @@ import { getOAuthURL } from './common/appId';
 const related_deriv_origin = getRelatedDeriveOrigin();
 
 export default {
-    app_title: 'Binary Bot',
+    app_title: 'Atrium 2.0',
     app_logo: 'image/deriv/brand/ic-brand-binarybot.svg',
     supported_languages: {
         en: 'English',

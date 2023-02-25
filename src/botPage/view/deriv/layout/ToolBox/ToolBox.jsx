@@ -79,35 +79,10 @@ const ToolBox = ({ blockly }) => {
                 is_gd_logged_in,
             },
         },
-        save: {
-            component: Save,
-            title: translate('Save Blocks'),
-            props: {
-                closeDialog: onCloseModal,
-                is_gd_logged_in,
-                blockly,
-            },
-        },
-        reset: {
-            component: Reset,
-            title: translate('Are you sure?'),
-            props: {
-                onCloseModal,
-                blockly,
-            },
-        },
+        
     };
     return (
         <div id='toolbox'>
-            <Popover content={translate('Reset the blocks to their initial state')} position='bottom'>
-                <button
-                    id='resetButton'
-                    className='toolbox-button icon-reset'
-                    onClick={() => {
-                        onShowModal('reset');
-                    }}
-                />
-            </Popover>
             <Popover content={translate('Load new blocks (xml file)')} position='bottom'>
                 <button
                     id='load-xml'
@@ -117,49 +92,9 @@ const ToolBox = ({ blockly }) => {
                     }}
                 />
             </Popover>
-            <Popover content={translate('Save the existing blocks (xml file)')} position='bottom'>
-                <button
-                    id='save-xml'
-                    className='toolbox-button icon-save'
-                    onClick={() => {
-                        onShowModal('save');
-                    }}
-                />
-            </Popover>
-            {is_gd_ready && (
-                <Popover
-                    content={translate('Connect Binary Bot to your Google Drive to easily save and re-use your blocks')}
-                    position='bottom'
-                >
-                    <button id='integrations' className='toolbox-button icon-integrations' />
-                </Popover>
-            )}
+            
 
-            <span className='toolbox-separator' />
-            <Popover content={translate('Undo the changes (Ctrl+Z)')} position='bottom'>
-                <button id='undo' className='toolbox-button icon-undo' onClick={() => blockly.undo()} />
-            </Popover>
-            <Popover content={translate('Redo the changes (Ctrl+Shift+Z)')} position='bottom'>
-                <button id='redo' className='toolbox-button icon-redo' onClick={() => blockly.redo()} />
-            </Popover>
-            <span className='toolbox-separator' />
-            <Popover content={translate('Zoom In (Ctrl + +)')} position={isMobile() ? 'left' : 'bottom'}>
-                <button
-                    id='zoomIn'
-                    className='toolbox-button icon-zoom-in'
-                    onClick={() => blockly.zoomOnPlusMinus(true)}
-                />
-            </Popover>
-            <Popover content={translate('Zoom Out (Ctrl + -)')} position={isMobile() ? 'left' : 'bottom'}>
-                <button
-                    id='zoomOut'
-                    className='toolbox-button icon-zoom-out'
-                    onClick={() => blockly.zoomOnPlusMinus(false)}
-                />
-            </Popover>
-            <Popover content={translate('Rearrange Vertically')} position={isMobile() ? 'left' : 'bottom'}>
-                <button id='rearrange' className='toolbox-button icon-sort' onClick={() => blockly.cleanUp()} />
-            </Popover>
+            
             {/* Needs Refactor ClientInfo Structure */}
             <span className='toolbox-separator' />
             <Popover content={translate('Show/hide the summary pop-up')} position='bottom'>
