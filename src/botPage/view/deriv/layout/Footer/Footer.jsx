@@ -14,8 +14,8 @@ const HelpCenter = () => (
 ); */
 
 const Footer = () => (
-        <footer className='footer'>
-            {/* <NetworkStatus />
+    <footer className='footer'>
+        {/* <NetworkStatus />
             <FooterIconSeparator />
             <LanguageSelector />
             <FooterIconSeparator />
@@ -30,7 +30,7 @@ const Footer = () => (
                 )}
                 <ToggleFullScreen />
             </div> */}
-        </footer>
-    );
+    </footer>
+);
 
 export default Footer;

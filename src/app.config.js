@@ -154,7 +154,7 @@ export default {
             logo: 'image/deriv/brand/ic-brand-smarttrader.svg',
         },
         {
-            title: 'Binary Bot',
+            title: 'Atrium 2.0 Bot',
             description: translate(
                 'Our classic “drag-and-drop” tool for creating trading bots, featuring pop-up trading charts, for advanced users.'
             ),

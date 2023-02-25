@@ -23,12 +23,12 @@ const PlatformDropdown = React.forwardRef(({ hideDropdown, setIsPlatformSwitcher
         <div id='platform__dropdown' className='platform__dropdown show'>
             <div id='platform__list' className='platform__dropdown-list' ref={platformDropdownRef}>
                 {config.platforms.map(platform => {
-                    const is_binary_bot = platform.title === 'Binary Bot' && location.pathname === '/';
+                    const is_binary_bot = platform.title === 'Atrium Bot' && location.pathname === '/';
                     return (
                         <a
                             href={is_binary_bot ? '#' : platform.link}
                             className={classNames('platform__list-item', {
-                                'platform__list-item--active': platform.title === 'Binary Bot',
+                                'platform__list-item--active': platform.title === 'Atrium Bot',
                             })}
                             key={`link-to-${platform.title.replace(/ /g, '').toLowerCase()}`}
                             onClick={e => handleClick(e, is_binary_bot)}

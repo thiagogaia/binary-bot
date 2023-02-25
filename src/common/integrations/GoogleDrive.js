@@ -29,7 +29,7 @@ class GoogleDriveUtil {
         auth_scope = GD_CONFIG.AUTH_SCOPE,
         scope = GD_CONFIG.SCOPE,
         discovery_docs = GD_CONFIG.DISCOVERY_DOCS,
-        bot_folder = `Binary Bot - ${translate('Strategies')}`
+        bot_folder = `Atrium Bot - ${translate('Strategies')}`
     ) {
         this.client_id = client_id;
         this.api_key = api_key;
