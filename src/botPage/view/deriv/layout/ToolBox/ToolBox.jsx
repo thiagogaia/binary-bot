@@ -40,28 +40,6 @@ const ToolBox = ({ blockly }) => {
     const { is_gd_ready } = useSelector(state => state.ui);
     const { is_gd_logged_in } = useSelector(state => state.client);
 
-    React.useEffect(() => {
-        globalObserver.register('bot.running', () => dispatch(setIsBotRunning(true)));
-        globalObserver.register('bot.stop', () => dispatch(setIsBotRunning(false)));
-
-        const Keys = Object.freeze({ zoomIn: '=', zoomOut: '-' });
-        document.body.addEventListener('keydown', e => {
-            if (e.key === Keys.zoomOut && e.ctrlKey) {
-                // Ctrl + -
-                e.preventDefault();
-                // eslint-disable-next-line no-unused-expressions
-                blockly?.zoomOnPlusMinus(false);
-                return;
-            }
-            if (e.key === Keys.zoomIn && e.ctrlKey) {
-                // Ctrl + +
-                e.preventDefault();
-                // eslint-disable-next-line no-unused-expressions
-                blockly?.zoomOnPlusMinus(true);
-            }
-        });
-    }, []);
-
     const onCloseModal = () => {
         setShowModal(false);
         updateSelectedModal('');

@@ -267,10 +267,12 @@ const addBindings = blockly => {
         });
 
         showSummary();
+        console.log('startbot: block limitations', limitations);
         blockly.run(limitations);
     };
 
     $('#runButton').click(() => {
+        console.log('esse aqui é o click será?')
         // setTimeout is needed to ensure correct event sequence
         if (!checkForRequiredBlocks()) {
             setTimeout(() => $('#stopButton').triggerHandler('click'));
